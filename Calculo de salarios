@@ -1,0 +1,53 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int numTrabajadores;
+    double totalEmpresa = 0;
+
+    cout << "Ingrese el número de trabajadores: ";
+    cin >> numTrabajadores;
+
+    for (int i = 0; i < numTrabajadores; i++) {
+        string nombre;
+        int edad, diasTrabajados, horasTotales = 0;
+        double valorHora, salario = 0;
+
+        cout << "\nNombre del trabajador " << i+1 << ": ";
+        cin >> nombre;
+        cout << "Edad: ";
+        cin >> edad;
+        cout << "Valor por hora: ";
+        cin >> valorHora;
+        cout << "Días trabajados en el mes: ";
+        cin >> diasTrabajados;
+
+        for (int j = 0; j < diasTrabajados; j++) {
+            int horasDia;
+            char recargo;
+            cout << "Horas trabajadas el día " << j+1 << ": ";
+            cin >> horasDia;
+            cout << "¿Tiene recargo nocturno? (S/N): ";
+            cin >> recargo;
+
+            horasTotales += horasDia;
+            if (recargo == 'S' || recargo == 's') {
+                salario += horasDia * valorHora * 1.07;
+            } else {
+                salario += horasDia * valorHora;
+            }
+        }
+
+        if (edad > 50 && horasTotales >= 60) {
+            salario *= 1.015;
+        }
+
+        cout << "\nSalario de " << nombre << ": $" << salario << "\n";
+        totalEmpresa += salario;
+    }
+
+    cout << "\nTotal a pagar por la empresa: $" << totalEmpresa << "\n";
+
+    return 0;
+}
