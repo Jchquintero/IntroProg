@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    const int CAP_CAMPERO = 10;
+    const int CAP_VAN = 20;
+    const int CAP_CHIVA = 30;
+
+    for (int hora = 5; hora <= 17; hora++) {
+        int pasajeros = hora * 10;  // Simplificamos la cantidad de pasajeros a un valor base
+        int enEspera = 0;
+
+        cout << "Hora de partida: " << hora << ":00\n";
+        cout << "Pasajeros: " << pasajeros << "\n";
+
+        if (pasajeros <= CAP_CAMPERO) {
+            cout << "Vehículo utilizado: Campero\n";
+        } else if (pasajeros <= CAP_VAN) {
+            cout << "Vehículo utilizado: Van\n";
+        } else if (pasajeros <= CAP_CHIVA) {
+            cout << "Vehículo utilizado: Chiva\n";
+        } else {
+            cout << "Vehículo utilizado: Chiva\n";
+            enEspera = pasajeros - CAP_CHIVA;
+        }
+
+        cout << "Pasajeros en espera: " << enEspera << "\n\n";
+    }
+
+    return 0;
+}
