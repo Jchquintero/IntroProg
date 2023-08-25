@@ -1,0 +1,38 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    double CAPACIDAD_AVION = 18000.0;
+    double TARIFA_POR_KG = 10.0;  // Asumimos un valor fijo por kilogramo
+    int numMaletas;
+    double pesoTotal = 0, maletaMasPesada = 0, maletaMasLiviana = CAPACIDAD_AVION, ingresoTotal = 0;
+
+    cout << "Ingrese el número de maletas: ";
+    cin >> numMaletas;
+
+    for (int i = 0; i < numMaletas; i++) {
+        double pesoMaleta;
+        cout << "Peso de la maleta " << i+1 << " (en kg): ";
+        cin >> pesoMaleta;
+
+        if (pesoMaleta + pesoTotal <= CAPACIDAD_AVION) {
+            pesoTotal += pesoMaleta;
+            ingresoTotal += pesoMaleta * TARIFA_POR_KG;
+            if (pesoMaleta > maletaMasPesada) maletaMasPesada = pesoMaleta;
+            if (pesoMaleta < maletaMasLiviana) maletaMasLiviana = pesoMaleta;
+        } else {
+            cout << "¡Capacidad excedida! No se puede agregar esta maleta.\n";
+        }
+    }
+
+    double pesoPromedio = pesoTotal / numMaletas;
+
+    cout << "\nNúmero total de maletas para el vuelo: " << numMaletas;
+    cout << "\nPeso de la maleta más pesada: " << maletaMasPesada << " kg";
+    cout << "\nPeso de la maleta más liviana: " << maletaMasLiviana << " kg";
+    cout << "\nPeso promedio de las maletas: " << pesoPromedio << " kg";
+    cout << "\nIngreso total por concepto de maletas: $" << ingresoTotal << "\n";
+
+    return 0;
+}
